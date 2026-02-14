@@ -9,31 +9,28 @@
     lucide.createIcons();
 
     // ==========================================
-    // STRAPI CMS INTEGRATION
+    // CMS INTEGRATION (SUPABASE)
     // ==========================================
-    
-    const StrapiIntegration = {
+
+    const CMSIntegration = {
         isConnected: false,
-        retryAttempts: 3,
-        retryDelay: 2000,
 
         async init() {
             try {
-                // Check Strapi connection
-                this.isConnected = await StrapiAPI.checkConnection();
-                
+                this.isConnected = await SupabaseAPI.checkConnection();
+
                 if (this.isConnected) {
-                    console.log('✓ Strapi connected successfully');
+                    console.log('✓ Supabase connected successfully');
                     await this.loadAllContent();
                 } else {
-                    console.log('⚠ Strapi not available, using fallback content');
+                    console.log('⚠ Supabase not available, using fallback content');
                     this.loadFallbackContent();
                 }
             } catch (error) {
-                console.warn('Strapi initialization error:', error);
+                console.warn('CMS initialization error:', error);
                 this.loadFallbackContent();
             }
-            
+
             // Hide loading overlay
             const loadingOverlay = document.getElementById('loading-overlay');
             if (loadingOverlay) {
@@ -53,7 +50,7 @@
             if (!wrapper) return;
 
             try {
-                const response = await StrapiAPI.getProjects({ featured: true });
+                const response = await SupabaseAPI.getProjects();
                 const projects = response.data || [];
 
                 if (projects.length > 0) {
@@ -62,20 +59,17 @@
                     this.loadFallbackProjects();
                 }
             } catch (error) {
-                console.warn('Failed to load projects from Strapi:', error);
+                console.warn('Failed to load projects:', error);
                 this.loadFallbackProjects();
             }
 
-            // Reinitialize Swiper after loading projects
             this.initSwiper();
             lucide.createIcons();
         },
 
         createProjectSlide(project) {
-            const attrs = project.attributes || project;
-            const thumbnail = attrs.thumbnail?.data?.attributes?.url || '';
-            const imageUrl = thumbnail ? StrapiAPI.getImageUrl({ url: thumbnail }) : '';
-            
+            const imageUrl = project.thumbnail_url || '';
+
             return `
                 <div class="swiper-slide">
                     <div class="project-card">
@@ -83,8 +77,8 @@
                             <span class="project-card__overlay-text">View Project</span>
                         </div>
                         <div class="project-card__info">
-                            <h3 class="project-card__title">${attrs.title || 'Untitled Project'}</h3>
-                            <span class="project-card__tag">${attrs.category || 'Webflow'} ${attrs.client ? '· ' + attrs.client : ''}</span>
+                            <h3 class="project-card__title">${project.title || 'Untitled Project'}</h3>
+                            <span class="project-card__tag">${project.category || 'Webflow'} ${project.client ? '· ' + project.client : ''}</span>
                         </div>
                     </div>
                 </div>
@@ -96,11 +90,10 @@
             if (!track) return;
 
             try {
-                const response = await StrapiAPI.getTestimonials({ featured: true });
+                const response = await SupabaseAPI.getTestimonials();
                 const testimonials = response.data || [];
 
                 if (testimonials.length > 0) {
-                    // Create doubled content for seamless marquee
                     const firstPass = testimonials.map(t => this.createTestimonialCard(t)).join('');
                     const secondPass = testimonials.map(t => this.createTestimonialCard(t)).join('');
                     track.innerHTML = firstPass + secondPass;
@@ -108,20 +101,18 @@
                     this.loadFallbackTestimonials();
                 }
             } catch (error) {
-                console.warn('Failed to load testimonials from Strapi:', error);
+                console.warn('Failed to load testimonials:', error);
                 this.loadFallbackTestimonials();
             }
         },
 
         createTestimonialCard(testimonial) {
-            const attrs = testimonial.attributes || testimonial;
-            
             return `
                 <div class="testimonial-card">
-                    <p class="testimonial-card__text">"${attrs.quote || 'Great experience working together.'}"</p>
+                    <p class="testimonial-card__text">"${testimonial.quote || 'Great experience working together.'}"</p>
                     <div class="testimonial-card__author">
-                        <span class="testimonial-card__name">${attrs.name || 'Anonymous'}</span>
-                        <span class="testimonial-card__role">${attrs.role || ''}${attrs.company ? ', ' + attrs.company : ''}</span>
+                        <span class="testimonial-card__name">${testimonial.name || 'Anonymous'}</span>
+                        <span class="testimonial-card__role">${testimonial.role || ''}${testimonial.company ? ', ' + testimonial.company : ''}</span>
                     </div>
                 </div>
             `;
@@ -258,8 +249,8 @@
         }
     };
 
-    // Initialize Strapi
-    StrapiIntegration.init();
+    // Initialize CMS
+    CMSIntegration.init();
 
     // ==========================================
     // LENIS SMOOTH SCROLL
@@ -472,8 +463,8 @@
     // ==========================================
     // SWIPER — PROJECTS CAROUSEL
     // ==========================================
-    // Note: Now initialized by StrapiIntegration after content loads
-    
+    // Note: Now initialized by CMSIntegration after content loads
+
     // ==========================================
     // SMOOTH SCROLL FOR NAV LINKS (via Lenis)
     // ==========================================
@@ -487,55 +478,54 @@
     });
 
     // ==========================================
-    // CONTACT FORM — STRAPI SUBMISSION
+    // CONTACT FORM — SUPABASE SUBMISSION
     // ==========================================
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            const btn = contactForm.querySelector('[data-strapi-submit]');
+
+            const btn = contactForm.querySelector('button[type="submit"]');
             const formData = {
                 name: contactForm.name.value.trim(),
                 email: contactForm.email.value.trim(),
                 projectType: contactForm['project-type']?.value || 'other',
                 message: contactForm.message.value.trim()
             };
-            
+
             // Validate form
             if (!formData.name || !formData.email || !formData.message) {
-                StrapiIntegration.showFormStatus('Please fill in all required fields.', 'error');
+                CMSIntegration.showFormStatus('Please fill in all required fields.', 'error');
                 return;
             }
-            
+
             // Show loading state
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '<span>Sending...</span>';
             btn.disabled = true;
-            StrapiIntegration.showFormStatus('Sending your message...', 'loading');
-            
+            CMSIntegration.showFormStatus('Sending your message...', 'loading');
+
             try {
-                // Try to submit to Strapi
-                if (StrapiIntegration.isConnected) {
-                    await StrapiAPI.submitContactForm(formData);
-                    StrapiIntegration.showFormStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
+                if (CMSIntegration.isConnected) {
+                    await SupabaseAPI.submitContactForm(formData);
+                    CMSIntegration.showFormStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
                 } else {
                     // Fallback: simulate submission
                     await new Promise(resolve => setTimeout(resolve, 1500));
-                    StrapiIntegration.showFormStatus('Message sent! (Demo mode - configure Strapi for real submissions)', 'success');
+                    CMSIntegration.showFormStatus('Message sent! (Demo mode - configure Supabase for real submissions)', 'success');
                 }
-                
+
                 btn.innerHTML = '<span>Sent! ✓</span>';
                 btn.style.background = '#22c55e';
-                
+
             } catch (error) {
                 console.error('Form submission error:', error);
-                StrapiIntegration.showFormStatus('Failed to send message. Please try again or email directly.', 'error');
+                CMSIntegration.showFormStatus('Failed to send message. Please try again or email directly.', 'error');
                 btn.innerHTML = originalHTML;
             }
-            
+
             btn.disabled = false;
-            
+
             setTimeout(() => {
                 btn.innerHTML = originalHTML;
                 btn.style.background = '';

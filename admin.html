@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Portfolio CMS</title>
+    <meta name="theme-color" content="#a78bfa">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon 16.ico" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="assets/favicon 32.ico" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="assets/favicon 64.ico" sizes="64x64">
+    <link rel="icon" type="image/x-icon" href="assets/favicon 128.ico" sizes="128x128">
+    <link rel="apple-touch-icon" href="assets/favicon 180.ico" sizes="180x180">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Scripts & Styles -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-card">
+            <div class="login-card__header">
+                <h1 class="login-card__logo">Jonel<span class="accent">.</span></h1>
+                <p class="login-card__subtitle">Admin Dashboard</p>
+            </div>
+            <form class="login-card__form" id="login-form">
+                <div class="login-card__field">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="admin@example.com" required autocomplete="email">
+                </div>
+                <div class="login-card__field">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required
+                        autocomplete="current-password">
+                </div>
+                <button type="submit" class="login-card__btn" id="login-btn">
+                    <span>Sign In</span>
+                </button>
+                <p class="login-card__error" id="login-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <h2 class="sidebar__logo">Jonel<span class="accent">.</span></h2>
+                <span class="sidebar__badge">CMS</span>
+            </div>
+            <nav class="sidebar__nav">
+                <button class="sidebar__link active" data-tab="projects">
+                    <i data-lucide="folder" stroke-width="1.5"></i>
+                    <span>Projects</span>
+                </button>
+                <button class="sidebar__link" data-tab="testimonials">
+                    <i data-lucide="message-square" stroke-width="1.5"></i>
+                    <span>Testimonials</span>
+                </button>
+                <button class="sidebar__link" data-tab="inquiries">
+                    <i data-lucide="inbox" stroke-width="1.5"></i>
+                    <span>Inquiries</span>
+                    <span class="sidebar__count" id="inquiry-count"></span>
+                </button>
+            </nav>
+            <div class="sidebar__footer">
+                <button class="sidebar__link sidebar__link--logout" id="logout-btn">
+                    <i data-lucide="log-out" stroke-width="1.5"></i>
+                    <span>Sign Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <h1 class="topbar__title" id="page-title">Projects</h1>
+                <div class="topbar__actions">
+                    <button class="btn btn--primary" id="add-new-btn">
+                        <i data-lucide="plus" stroke-width="2"></i>
+                        <span>Add New</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Panels -->
+            <div class="content">
+                <!-- Projects Panel -->
+                <div class="panel active" id="panel-projects">
+                    <div class="table-wrapper">
+                        <table class="table" id="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Client</th>
+                                    <th>Featured</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projects-tbody"></tbody>
+                        </table>
+                        <div class="empty-state" id="projects-empty" style="display: none;">
+                            <i data-lucide="folder-open" stroke-width="1"></i>
+                            <p>No projects yet. Click "Add New" to create one.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials Panel -->
+                <div class="panel" id="panel-testimonials">
+                    <div class="table-wrapper">
+                        <table class="table" id="testimonials-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Company</th>
+                                    <th>Quote</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="testimonials-tbody"></tbody>
+                        </table>
+                        <div class="empty-state" id="testimonials-empty" style="display: none;">
+                            <i data-lucide="message-square" stroke-width="1"></i>
+                            <p>No testimonials yet. Click "Add New" to create one.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inquiries Panel -->
+                <div class="panel" id="panel-inquiries">
+                    <div class="table-wrapper">
+                        <table class="table" id="inquiries-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Project Type</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inquiries-tbody"></tbody>
+                        </table>
+                        <div class="empty-state" id="inquiries-empty" style="display: none;">
+                            <i data-lucide="inbox" stroke-width="1"></i>
+                            <p>No inquiries received yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <div class="modal__header">
+                <h2 class="modal__title" id="modal-title">Add Project</h2>
+                <button class="modal__close" id="modal-close">
+                    <i data-lucide="x" stroke-width="2"></i>
+                </button>
+            </div>
+            <form class="modal__form" id="modal-form">
+                <div class="modal__body" id="modal-body">
+                    <!-- Dynamic form fields inserted here -->
+                </div>
+                <div class="modal__footer">
+                    <button type="button" class="btn btn--ghost" id="modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn--primary" id="modal-submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-api.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

@@ -4,16 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonel Lelis — Webflow Developer & Designer</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Jonel Lelis — Webflow Developer & Designer | Custom No-Code Solutions</title>
     <meta name="description"
-        content="Jonel Lelis is a Webflow developer crafting high-performance, visually stunning websites. Explore a portfolio of custom Webflow builds, animations, and no-code solutions.">
+        content="Award-winning Webflow developer specializing in high-performance websites, custom animations, and CMS integrations. Transform your vision into stunning digital experiences.">
+    <meta name="keywords"
+        content="Webflow developer, Webflow designer, no-code development, custom animations, CMS integration, web design, Jonel Lelis">
+    <meta name="author" content="Jonel Lelis">
+    <meta name="theme-color" content="#f53333">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jonellelis.com/">
+    <meta property="og:title" content="Jonel Lelis — Webflow Developer & Designer">
+    <meta property="og:description"
+        content="Award-winning Webflow developer specializing in high-performance websites, custom animations, and CMS integrations.">
+    <meta property="og:image" content="https://jonellelis.com/assets/Opengraph.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://jonellelis.com/">
+    <meta name="twitter:title" content="Jonel Lelis — Webflow Developer & Designer">
+    <meta name="twitter:description"
+        content="Award-winning Webflow developer specializing in high-performance websites, custom animations, and CMS integrations.">
+    <meta name="twitter:image" content="https://jonellelis.com/assets/Opengraph.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon 16.ico" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="assets/favicon 32.ico" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="assets/favicon 64.ico" sizes="64x64">
+    <link rel="icon" type="image/x-icon" href="assets/favicon 128.ico" sizes="128x128">
+    <link rel="apple-touch-icon" href="assets/favicon 180.ico" sizes="180x180">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
@@ -22,7 +59,7 @@
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursor-follower"></div>
 
-    <!-- Loading State -->
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loading-overlay">
         <div class="loading-spinner"></div>
     </div>
@@ -30,52 +67,49 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav__inner">
-            <a href="#" class="nav__logo">Jonel<span class="accent">.&nbsp;</span></a>
-            <ul class="nav__links" id="nav-links">
+            <a href="#" class="nav__logo">Jonel<span class="accent">.</span></a>
+            <ul class="nav__links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Work</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact" class="nav__cta magnetic" data-strength="20">Let's Talk</a></li>
+                <li><a href="#contact" class="nav__cta">Let's Talk</a></li>
             </ul>
-            <button class="nav__burger" id="nav-burger" aria-label="Toggle menu">
+            <button class="nav__burger" id="nav-burger" aria-label="Menu">
                 <span></span>
                 <span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
         <ul class="mobile-menu__links">
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Work</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Let's Talk</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero__content">
-            <div class="hero__label reveal">
-                <span class="accent-dot"></span>
-                Webflow Developer & Designer
-            </div>
+            <p class="hero__label reveal">
+                <span class="accent-dot"></span> Webflow Developer & Designer
+            </p>
             <h1 class="hero__title">
                 <span class="hero__line reveal-clip">I Build</span>
                 <span class="hero__line reveal-clip"><span class="hero__highlight">Websites</span></span>
                 <span class="hero__line reveal-clip">That <em class="accent">Convert</em></span>
             </h1>
             <div class="hero__footer">
-                <p class="hero__subtitle reveal">
-                    Crafting high-performance Webflow experiences<br>
-                    with pixel-perfect design and clean interactions.
-                </p>
-                <a href="#projects" class="hero__scroll-cta reveal magnetic" data-strength="30">
-                    <span>View Work</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <p class="hero__subtitle reveal">I build fast, scalable, and custom websites using Webflow and Framer.
+                    Focusing on clean code, smooth interactions, and designs that convert.</p>
+                <a href="#projects" class="hero__scroll-cta magnetic reveal" data-strength="20">
+                    View My Work
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
                     </svg>
                 </a>
@@ -91,70 +125,73 @@
         <div class="about__container">
             <div class="about__col-left">
                 <span class="section-label reveal">01 / About</span>
-                <h2 class="about__heading reveal">
-                    I'm a developer who<br>
-                    thinks in <em class="accent">systems</em>,<br>
-                    designs in <em class="accent">detail</em>.
-                </h2>
+                <h2 class="about__heading reveal">Webflow developer with
+                    a <em class="accent">passion</em> for
+                    clean code & bold design.</h2>
             </div>
             <div class="about__col-right">
-                <p class="about__text reveal">
-                    With 5+ years specializing in Webflow, I bridge the gap between design and development.
-                    I don't just build websites — I engineer digital experiences that drive results.
-                </p>
-                <p class="about__text reveal">
-                    Every project starts with strategy and ends with a product that's fast,
-                    accessible, and impossible to ignore.
-                </p>
-                <div class="about__stats">
-                    <div class="about__stat reveal">
-                        <span class="about__stat-number" data-target="50" data-suffix="+">0+</span>
-                        <span class="about__stat-label">Projects Delivered</span>
-                    </div>
-                    <div class="about__stat reveal">
-                        <span class="about__stat-number" data-target="30" data-suffix="+">0+</span>
-                        <span class="about__stat-label">Happy Clients</span>
-                    </div>
-                    <div class="about__stat reveal">
-                        <span class="about__stat-number" data-target="5" data-suffix="+">0+</span>
+                <p class="about__text reveal">I specialize in building custom Webflow websites that don't just look
+                    beautiful — they perform. From complex CMS architectures to buttery-smooth interactions, I bring
+                    designs to life with precision and care.</p>
+                <p class="about__text reveal">Every project is an opportunity to push creative boundaries while
+                    maintaining the highest standards of web performance and accessibility.</p>
+                <div class="about__stats reveal">
+                    <div class="about__stat">
+                        <span class="about__stat-number" data-target="3" data-suffix="+">0</span>
                         <span class="about__stat-label">Years Experience</span>
+                    </div>
+                    <div class="about__stat">
+                        <span class="about__stat-number" data-target="47" data-suffix="+">0</span>
+                        <span class="about__stat-label">Projects Completed</span>
+                    </div>
+                    <div class="about__stat">
+                        <span class="about__stat-number" data-target="47" data-suffix="+">0</span>
+                        <span class="about__stat-label">Happy Clients</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (Bento Grid) -->
     <section class="services" id="services">
         <div class="services__container">
             <span class="section-label reveal">02 / Services</span>
-            <h2 class="services__heading reveal">What I Do</h2>
+            <h2 class="services__heading reveal">What I do<em class="accent">.</em></h2>
             <div class="services__grid">
                 <div class="service-card service-card--large reveal">
                     <span class="service-card__number">01</span>
-                    <div class="service-card__icon"><i data-lucide="code" stroke-width="1.5"></i></div>
+                    <div class="service-card__icon">
+                        <i data-lucide="layout" stroke-width="1.5"></i>
+                    </div>
                     <h3 class="service-card__title">Webflow<br>Development</h3>
-                    <p class="service-card__desc">Custom-built Webflow sites from Figma designs. Pixel-perfect,
-                        responsive, and optimized for performance.</p>
+                    <p class="service-card__desc">Pixel-perfect, responsive builds from Figma to Webflow. Clean,
+                        scalable class structures that are easy to maintain and extend.</p>
                 </div>
                 <div class="service-card reveal">
                     <span class="service-card__number">02</span>
-                    <div class="service-card__icon"><i data-lucide="sparkles" stroke-width="1.5"></i></div>
-                    <h3 class="service-card__title">Interactions<br>& Animations</h3>
-                    <p class="service-card__desc">Scroll-based animations, micro-interactions, and Lottie integrations
-                        that bring your site to life.</p>
+                    <div class="service-card__icon">
+                        <i data-lucide="sparkles" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="service-card__title">Interactions &<br>Animations</h3>
+                    <p class="service-card__desc">Scroll-triggered effects, hover states, and page transitions that
+                        bring interfaces to life.</p>
                 </div>
                 <div class="service-card reveal">
                     <span class="service-card__number">03</span>
-                    <div class="service-card__icon"><i data-lucide="database" stroke-width="1.5"></i></div>
+                    <div class="service-card__icon">
+                        <i data-lucide="database" stroke-width="1.5"></i>
+                    </div>
                     <h3 class="service-card__title">CMS &<br>Dynamic Content</h3>
-                    <p class="service-card__desc">Structured CMS collections, dynamic filtering, and content-driven
-                        pages that scale with your business.</p>
+                    <p class="service-card__desc">Custom CMS architectures, dynamic content, and filtered collections
+                        for content-heavy sites.</p>
                 </div>
                 <div class="service-card service-card--wide reveal">
                     <span class="service-card__number">04</span>
-                    <div class="service-card__icon"><i data-lucide="zap" stroke-width="1.5"></i></div>
-                    <h3 class="service-card__title">SEO & Performance Optimization</h3>
+                    <div class="service-card__icon">
+                        <i data-lucide="zap" stroke-width="1.5"></i>
+                    </div>
+                    <h3 class="service-card__title">SEO & Performance</h3>
                     <p class="service-card__desc">Lightning-fast load times, clean semantic HTML, and SEO best practices
                         baked into every build.</p>
                 </div>
@@ -163,7 +200,7 @@
     </section>
 
     <!-- Projects Section (Swiper) -->
-    <section class="projects" id="projects" data-strapi-section="projects">
+    <section class="projects" id="projects">
         <div class="projects__container">
             <div class="projects__header">
                 <div class="projects__header-left">
@@ -171,10 +208,10 @@
                     <h2 class="projects__heading reveal">Featured<br>Projects</h2>
                 </div>
                 <div class="projects__nav reveal">
-                    <button class="projects__btn projects__btn--prev" id="swiper-prev" aria-label="Previous project">
+                    <button class="projects__btn" id="swiper-prev" aria-label="Previous">
                         <i data-lucide="arrow-left" stroke-width="1.5"></i>
                     </button>
-                    <button class="projects__btn projects__btn--next" id="swiper-next" aria-label="Next project">
+                    <button class="projects__btn" id="swiper-next" aria-label="Next">
                         <i data-lucide="arrow-right" stroke-width="1.5"></i>
                     </button>
                 </div>
@@ -182,18 +219,26 @@
             <div class="swiper projects__swiper" id="projects-swiper">
                 <div class="swiper-wrapper" id="projects-swiper-wrapper">
                     <!-- Dynamic projects will be loaded here -->
-                    <!-- Static fallback (removed - loaded from Strapi) -->
+                    <!-- Content loaded dynamically from Supabase -->
+                </div>
+                <div class="projects__pagination"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials Marquee -->
-    <section class="testimonials" id="testimonials" data-strapi-section="testimonials">
+    <section class="testimonials" id="testimonials">
         <span class="section-label section-label--center reveal">04 / Testimonials</span>
         <div class="marquee">
             <div class="marquee__track" id="testimonials-track">
                 <!-- Dynamic testimonials will be loaded here -->
-                <!-- Static fallback (removed - loaded from Strapi) -->
+                <!-- Content loaded dynamically from Supabase -->
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact" data-strapi-section="contact">
+    <section class="contact" id="contact">
         <div class="contact__container">
             <div class="contact__left">
                 <span class="section-label reveal">05 / Contact</span>
@@ -203,7 +248,7 @@
                 </h2>
             </div>
             <div class="contact__right">
-                <form class="contact__form" id="contact-form" data-strapi-form>
+                <form class="contact__form" id="contact-form">
                     <div class="form-group reveal">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
@@ -218,9 +263,9 @@
                         <select id="project-type" name="project-type" required>
                             <option value="" disabled selected>Select a service</option>
                             <option value="webflow-dev">Webflow Development</option>
-                            <option value="interactions">Interactions & Animations</option>
-                            <option value="cms">CMS & Dynamic Content</option>
-                            <option value="seo">SEO & Performance</option>
+                            <option value="interactions">Interactions &amp; Animations</option>
+                            <option value="cms">CMS &amp; Dynamic Content</option>
+                            <option value="seo">SEO &amp; Performance</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
@@ -229,7 +274,7 @@
                         <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..."
                             required></textarea>
                     </div>
-                    <button type="submit" class="contact__submit magnetic reveal" data-strength="15" data-strapi-submit>
+                    <button type="submit" class="contact__submit magnetic reveal" data-strength="15">
                         <span>Send Message</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -258,9 +303,13 @@
         </div>
     </footer>
 
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    <script src="strapi-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-api.js"></script>
     <script src="script.js"></script>
 </body>
 

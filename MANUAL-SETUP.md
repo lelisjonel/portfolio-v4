@@ -1,155 +1,52 @@
-# Manual Strapi Setup Guide
+# Portfolio Setup Guide (Supabase CMS)
 
-## Step 1: Install Strapi
+## Step 1: Set Up Supabase Database
 
-Open a new terminal and run:
+1. Go to your [Supabase Dashboard](https://supabase.com/dashboard)
+2. Open your project → **SQL Editor**
+3. Paste the contents of `supabase-schema.sql` and click **Run**
+   - This creates the `projects`, `testimonials`, and `contact_inquiries` tables
+   - Sets up Row Level Security (RLS) policies
+   - Seeds sample data
 
-```bash
-npx create-strapi-app@latest strapi-backend --quickstart
-cd strapi-backend
-npm run develop
-```
+## Step 2: Create an Admin User
 
-Wait for installation to complete (5-10 minutes). You'll see "Project information" when done.
+To access the Admin Dashboard, you need a Supabase Auth user:
 
-## Step 2: Create Admin Account
+1. In Supabase Dashboard → **Authentication** → **Users**
+2. Click **Add User** → **Create New User**
+3. Enter your email and password
+4. Click **Create User**
 
-1. Open browser to `http://localhost:1337/admin`
-2. Fill in:
-   - Email: your-email@example.com
-   - Password: create a secure password
-   - First Name: Jonel
-   - Last Name: Lelis
-3. Click "Let's Start"
-
-## Step 3: Create Content Types
-
-Go to **Content-Type Builder** in the left sidebar and create each collection:
-
-### A. Projects Collection
-
-1. Click **Create new collection type**
-2. Name: `Project`
-3. Add these fields:
-   - `title` (Text → Short Text) ✓ Required
-   - `slug` (UID) → Target field: title ✓ Required
-   - `description` (Text → Long Text)
-   - `thumbnail` (Media → Media) → Allowed types: Images
-   - `category` (Text → Short Text)
-   - `client` (Text → Short Text)
-   - `websiteUrl` (Text → Short Text)
-   - `featured` (Boolean → Boolean) → Default: false
-   - `order` (Number → Integer) → Default: 0
-4. Click **Finish** → **Save**
-
-### B. Services Collection
-
-1. Click **Create new collection type**
-2. Name: `Service`
-3. Add these fields:
-   - `title` (Text → Short Text) ✓ Required
-   - `slug` (UID) → Target field: title ✓ Required
-   - `shortDescription` (Text → Short Text)
-   - `description` (Text → Long Text)
-   - `icon` (Media → Media) → Allowed types: Images
-   - `order` (Number → Integer) → Default: 0
-   - `isActive` (Boolean → Boolean) → Default: true
-4. Click **Finish** → **Save**
-
-### C. Testimonials Collection
-
-1. Click **Create new collection type**
-2. Name: `Testimonial`
-3. Add these fields:
-   - `name` (Text → Short Text) ✓ Required
-   - `role` (Text → Short Text)
-   - `company` (Text → Short Text)
-   - `quote` (Text → Long Text) ✓ Required
-   - `avatar` (Media → Media) → Allowed types: Images
-   - `featured` (Boolean → Boolean) → Default: false
-   - `order` (Number → Integer) → Default: 0
-4. Click **Finish** → **Save**
-
-### D. Contact Inquiries Collection
-
-1. Click **Create new collection type**
-2. Name: `Contact Inquiry`
-3. Add these fields:
-   - `name` (Text → Short Text) ✓ Required
-   - `email` (Email) ✓ Required
-   - `projectType` (Enumeration):
-     - Options: `webflow-dev`, `interactions`, `cms`, `seo`, `other`
-     - Default: `other`
-   - `message` (Text → Long Text) ✓ Required
-   - `status` (Enumeration):
-     - Options: `new`, `read`, `responded`, `closed`
-     - Default: `new`
-   - `source` (Text → Short Text)
-4. Click **Finish** → **Save**
-
-## Step 4: Configure API Permissions
-
-1. Click **Settings** in the left sidebar
-2. Expand **Users & Permissions Plugin**
-3. Click **Roles** → **Public**
-4. Grant permissions:
-   - **Project**: ✓ find, ✓ findOne
-   - **Service**: ✓ find, ✓ findOne
-   - **Testimonial**: ✓ find, ✓ findOne
-   - **Contact Inquiry**: ✓ create
-5. Click **Save**
-
-## Step 5: Add Sample Content
-
-### Add Projects
-
-1. Click **Content Manager** → **Project** → **Create new entry**
-2. Fill in fields:
-   - Title: Nexus Finance
-   - Category: Fintech
-   - Client: Nexus Inc.
-   - Upload thumbnail image
-   - Featured: ✓
-   - Order: 1
-3. Click **Save** → **Publish**
-4. Repeat for: Solara Health, Vertex Studio, Echo Commerce
-
-### Add Testimonials
-
-1. Click **Content Manager** → **Testimonial** → **Create new entry**
-2. Fill in:
-   - Name: Sarah Chen
-   - Role: CEO
-   - Company: Nexus Finance
-   - Quote: Alex transformed our outdated site into a conversion machine. The animations alone increased our engagement by 40%.
-   - Featured: ✓
-3. Click **Save** → **Publish**
-4. Repeat for other testimonials
-
-## Step 6: Connect Frontend
-
-1. Create `.env` file in your portfolio folder:
-   ```
-   VITE_STRAPI_URL=http://localhost:1337
-   ```
-
-2. Test by visiting `http://localhost:1337/api/projects?populate=*`
-
-## Step 7: Start Frontend
+## Step 3: Run the Portfolio
 
 ```bash
-# If using live-server
+# Using live-server
 npx live-server
 
-# Or open index.html in browser
+# Or simply open index.html in your browser
 ```
 
-## Done!
+## Step 4: Access the Admin Dashboard
 
-Your portfolio now uses Strapi CMS. Content updates made in Strapi will appear on your website automatically.
+1. Open `admin.html` in your browser (e.g. `http://localhost:8080/admin.html`)
+2. Log in with the email/password you created in Step 2
+3. From the dashboard you can:
+   - **Projects**: Add, edit, delete portfolio projects
+   - **Testimonials**: Manage client testimonials
+   - **Inquiries**: View and manage contact form submissions
+
+## How It Works
+
+| File | Purpose |
+|------|---------|
+| `supabase-api.js` | Connects to Supabase (URL + anon key hardcoded) |
+| `script.js` | Loads projects & testimonials from Supabase, falls back to hardcoded data if disconnected |
+| `admin.html` / `admin.js` / `admin.css` | Admin dashboard for content management |
+| `supabase-schema.sql` | Database schema (run once in Supabase SQL Editor) |
 
 ## Troubleshooting
 
-- **Content not loading?** Check Strapi is running (`npm run develop`)
-- **Permission errors?** Verify API permissions in Settings
-- **Images not showing?** Ensure media permissions are set
+- **Content not loading?** Check browser console for Supabase errors
+- **Admin login fails?** Ensure you created a user in Supabase Auth (Step 2)
+- **Form submissions not saving?** Verify the `contact_inquiries` RLS policy allows anon inserts
