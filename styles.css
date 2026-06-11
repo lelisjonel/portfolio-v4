@@ -667,7 +667,7 @@ body:hover .cursor-follower {
     background: var(--black-light);
     border: 1px solid var(--gray-dark);
     border-radius: 12px;
-    padding: var(--space-lg);
+    padding: 2.5rem;
     position: relative;
     overflow: hidden;
     transition: border-color var(--duration-fast), transform var(--duration-fast) var(--ease-out);
@@ -1009,7 +1009,7 @@ body:hover .cursor-follower {
 .testimonial-card {
     flex: 0 0 auto;
     width: 420px;
-    padding: var(--space-lg);
+    padding: 2.5rem;
     border: 1px solid var(--gray-dark);
     border-radius: 12px;
     background: var(--black-light);
@@ -1394,6 +1394,11 @@ body:hover .cursor-follower {
 
     .testimonial-card {
         width: 320px;
+    }
+
+    .service-card,
+    .testimonial-card {
+        padding: 1.5rem;
     }
 
     .contact {
