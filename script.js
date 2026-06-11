@@ -80,7 +80,7 @@
                                 <img src="${imageUrl}" alt="${project.title || 'Project thumbnail'}">
                             ` : ''}
                             ${previewUrl ? `
-                                <a href="${previewUrl}" target="_blank" rel="noopener noreferrer" class="project-card__overlay-link">
+                                <a href="${previewUrl}" target="_blank" rel="noopener noreferrer" class="project-card__preview-link">
                                     <span class="project-card__overlay-text">${overlayText}</span>
                                 </a>
                             ` : `
