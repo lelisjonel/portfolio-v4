@@ -844,6 +844,17 @@ body:hover .cursor-follower {
     background: var(--gray-dark);
     margin-bottom: var(--space-sm);
     transition: transform var(--duration) var(--ease-out);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
 }
 
 .project-card:hover .project-card__image {

@@ -206,6 +206,10 @@
                 <label for="f-thumbnail">Thumbnail URL</label>
                 <input type="url" id="f-thumbnail" placeholder="https://..." value="${esc(project?.thumbnail_url || '')}">
             </div>
+            <div class="form-field">
+                <label for="f-preview-url">Preview URL</label>
+                <input type="url" id="f-preview-url" placeholder="https://..." value="${esc(project?.preview_url || '')}">
+            </div>
             <div class="form-field form-field--checkbox">
                 <input type="checkbox" id="f-featured" ${project?.featured ? 'checked' : ''}>
                 <label for="f-featured">Featured project</label>
@@ -221,12 +225,13 @@
         const category = $('#f-category').value.trim();
         const clientName = $('#f-client').value.trim();
         const thumbnail_url = $('#f-thumbnail').value.trim();
+        const preview_url = $('#f-preview-url').value.trim();
         const featured = $('#f-featured').checked;
 
         if (!title) { showToast('Title is required', 'error'); return; }
         if (!slug) slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
-        const record = { title, slug, category, client: clientName, thumbnail_url, featured };
+        const record = { title, slug, category, client: clientName, thumbnail_url, preview_url, featured };
         const client = SupabaseAPI.getClient();
 
         try {

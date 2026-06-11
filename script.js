@@ -69,12 +69,23 @@
 
         createProjectSlide(project) {
             const imageUrl = project.thumbnail_url || '';
+            const previewUrl = project.preview_url || '';
+            const overlayText = previewUrl ? 'Live Preview' : 'View Project';
 
             return `
                 <div class="swiper-slide">
                     <div class="project-card">
-                        <div class="project-card__image" ${imageUrl ? `style="background-image: url('${imageUrl}')"` : ''}>
-                            <span class="project-card__overlay-text">View Project</span>
+                        <div class="project-card__image">
+                            ${imageUrl ? `
+                                <img src="${imageUrl}" alt="${project.title || 'Project thumbnail'}">
+                            ` : ''}
+                            ${previewUrl ? `
+                                <a href="${previewUrl}" target="_blank" rel="noopener noreferrer" class="project-card__overlay-link">
+                                    <span class="project-card__overlay-text">${overlayText}</span>
+                                </a>
+                            ` : `
+                                <span class="project-card__overlay-text">${overlayText}</span>
+                            `}
                         </div>
                         <div class="project-card__info">
                             <h3 class="project-card__title">${project.title || 'Untitled Project'}</h3>

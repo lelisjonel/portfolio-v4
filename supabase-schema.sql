@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS projects (
     category TEXT DEFAULT '',
     client TEXT DEFAULT '',
     thumbnail_url TEXT DEFAULT '',
+    preview_url TEXT DEFAULT '',
     featured BOOLEAN DEFAULT false,
     created_at TIMESTAMPTZ DEFAULT now()
 );
@@ -116,11 +117,11 @@ CREATE POLICY "Allow authenticated delete on contact_inquiries"
 -- Seed Data (Optional — sample content)
 -- =============================================
 
-INSERT INTO projects (title, slug, category, client, thumbnail_url, featured) VALUES
-    ('Nexus Finance', 'nexus-finance', 'Fintech', 'Nexus Inc.', '', true),
-    ('Solara Health', 'solara-health', 'Healthcare', 'Solara Corp.', '', true),
-    ('Vertex Studio', 'vertex-studio', 'Creative Agency', 'Vertex LLC', '', true),
-    ('Echo Commerce', 'echo-commerce', 'E-commerce', 'Echo Ltd.', '', true);
+INSERT INTO projects (title, slug, category, client, thumbnail_url, preview_url, featured) VALUES
+    ('Nexus Finance', 'nexus-finance', 'Fintech', 'Nexus Inc.', '', 'https://example.com/nexus-finance', true),
+    ('Solara Health', 'solara-health', 'Healthcare', 'Solara Corp.', '', 'https://example.com/solara-health', true),
+    ('Vertex Studio', 'vertex-studio', 'Creative Agency', 'Vertex LLC', '', 'https://example.com/vertex-studio', true),
+    ('Echo Commerce', 'echo-commerce', 'E-commerce', 'Echo Ltd.', '', 'https://example.com/echo-commerce', true);
 
 INSERT INTO testimonials (name, role, company, quote, featured) VALUES
     ('Sarah Chen', 'CEO', 'Nexus Finance', 'Jonel transformed our outdated site into a conversion machine. The animations alone increased our engagement by 40%.', true),
