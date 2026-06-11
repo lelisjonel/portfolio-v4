@@ -1395,7 +1395,14 @@ body:hover .cursor-follower {
     .testimonial-card {
         width: 320px;
     }
-
+    
+    .project-card__info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        justify-content: flex-start;
+        padding: 0; /* keep spacing consistent on mobile */
+    }
     .service-card,
     .testimonial-card {
         padding: 1.5rem;
